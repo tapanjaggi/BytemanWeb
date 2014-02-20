@@ -10,6 +10,7 @@ import javax.servlet.ServletContextListener;
 
 import com.bytemanweb.common.BytemanConstants;
 import com.bytemanweb.domain.ProcessExecutor;
+import com.bytemanweb.domain.dto.ProcessExecutorResponse;
 
 /**
  * Application Lifecycle Listener implementation class BytemanServletContextListener
@@ -37,7 +38,10 @@ public class BytemanServletContextListener implements ServletContextListener {
         ProcessExecutor pe = new ProcessExecutor();
         try {
 			pe.execute(bytemanHome+File.separator+BytemanConstants.INSTALL_SCRIPT+" "+ processId);
-		} catch (IOException e) {
+			String ruleSubmit = bytemanHome+File.separator+BytemanConstants.RULE_SUBMIT_SCRIPT+" "+ bytemanHome +  File.separator+BytemanConstants.RULES_DIR+ File.separator+ BytemanConstants.OPEN_LOG_RULE_FILE;
+			ProcessExecutorResponse res = pe.execute(ruleSubmit);
+			System.out.println("submitted rule " +res.getOutputMessage());
+		} catch (IOException e) { 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
