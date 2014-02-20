@@ -1,10 +1,15 @@
 package com.kronos.wfc.byteman;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kronos.wfc.byteman.domain.ProcessExecutor;
+import com.kronos.wfc.byteman.domain.dto.ProcessExecutorRequest;
+import com.kronos.wfc.byteman.domain.dto.ProcessExecutorResponse;
 
 /**
  * Servlet implementation class BytemanServlet
@@ -36,7 +41,12 @@ public class BytemanServlet extends HttpServlet {
 		case BytemanConstants.ATTACH_COMMAND: 
 			Runtime.getRuntime().exec("cmd /c C:\\Users\\tapan.jaggi\\Desktop\\byteman-download-2.1.2-bin\\byteman-download-2.1.2\\bin\\");
 			break;
-
+		case BytemanConstants.LOAD_RULES:
+			ProcessExecutorRequest executorRequest = new ProcessExecutorRequest();
+			executorRequest.setCommand("C:/Kronos/test.bat");
+			ProcessExecutor processExecutor = new ProcessExecutor();
+			ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
+			System.out.println(executorResponse.getOutputMessage());
 		default:
 			break;
 		}

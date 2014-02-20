@@ -13,7 +13,7 @@
     <h2>Your Current rules are: </h2>
     <form method="post" action="BytemanServlet">
     <textarea id="textarea" rows="35"></textarea>
-    <button name="submit" value="load">
+    <button name="command" value="loadRules">
 Load Rules</button>
     <button name="submit" value="unload">
 Unload Rules</button>
