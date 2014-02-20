@@ -44,14 +44,14 @@ public class BytemanServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter(BytemanConstants.COMMAND);
-		String ruleDetails = request.getParameter("ruleDetails");
-		Byteman.writeToRulesFile(ruleDetails);
 		
 		switch (command) {
 		case BytemanConstants.ATTACH_COMMAND: 
 			Runtime.getRuntime().exec("cmd /c C:\\Users\\tapan.jaggi\\Desktop\\byteman-download-2.1.2-bin\\byteman-download-2.1.2\\bin\\");
 			break;
 		case BytemanConstants.LOAD_RULES:
+			String ruleDetails = request.getParameter("ruleDetails");
+			Byteman.writeToRulesFile(ruleDetails);
 			ProcessExecutorRequest executorRequest = new ProcessExecutorRequest();
 	        String bytemanHome = request.getServletContext().getRealPath("/utils");
 			String submitCommand = bytemanHome+File.separator+BytemanConstants.RULE_SUBMIT_SCRIPT + " " + BytemanConstants.RULES_LOAD_TEMP_FILE;
@@ -59,6 +59,18 @@ public class BytemanServlet extends HttpServlet {
 			ProcessExecutor processExecutor = new ProcessExecutor();
 			ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 			System.out.println(executorResponse.getOutputMessage());
+			break;
+		case BytemanConstants.UNLOAD_RULES:
+			ruleDetails = request.getParameter("ruleDetails");
+			Byteman.writeToRulesFile(ruleDetails);
+			executorRequest = new ProcessExecutorRequest();
+	        bytemanHome = request.getServletContext().getRealPath("/utils");
+			submitCommand = bytemanHome+File.separator+BytemanConstants.RULE_UNLOAD_SCRIPT + " " + BytemanConstants.RULES_LOAD_TEMP_FILE;
+			executorRequest.setCommand(submitCommand);
+			processExecutor = new ProcessExecutor();
+			executorResponse = processExecutor.execute(executorRequest);
+			System.out.println(executorResponse.getOutputMessage());
+			break;
 		default:
 			break;
 		}

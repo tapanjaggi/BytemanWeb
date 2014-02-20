@@ -15,7 +15,7 @@
     <textarea id="textarea" name="ruleDetails" rows="35"><%=request.getAttribute("currentRules") %></textarea>
     <button name="command" value="loadRules">
 Load Rules</button>
-    <button name="submit" value="unload">
+    <button name="command" value="unloadRules">
 Unload Rules</button>
     </form>
 </div>
