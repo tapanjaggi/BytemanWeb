@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.kronos.wfc.byteman.domain;
+package com.bytemanweb.domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.kronos.wfc.byteman.domain.dto.ProcessExecutorRequest;
-import com.kronos.wfc.byteman.domain.dto.ProcessExecutorResponse;
+import com.bytemanweb.domain.dto.ProcessExecutorRequest;
+import com.bytemanweb.domain.dto.ProcessExecutorResponse;
 
 /**
  * Executor class for executing the processes.

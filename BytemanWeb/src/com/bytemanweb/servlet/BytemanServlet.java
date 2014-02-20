@@ -1,4 +1,4 @@
-package com.kronos.wfc.byteman.servlet;
+package com.bytemanweb.servlet;
 
 import java.io.IOException;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kronos.wfc.byteman.common.BytemanConstants;
-import com.kronos.wfc.byteman.domain.ProcessExecutor;
-import com.kronos.wfc.byteman.domain.dto.ProcessExecutorRequest;
-import com.kronos.wfc.byteman.domain.dto.ProcessExecutorResponse;
+import com.bytemanweb.common.BytemanConstants;
+import com.bytemanweb.domain.ProcessExecutor;
+import com.bytemanweb.domain.dto.ProcessExecutorRequest;
+import com.bytemanweb.domain.dto.ProcessExecutorResponse;
 
 /**
  * Servlet implementation class BytemanServlet

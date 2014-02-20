@@ -1,4 +1,4 @@
-package com.kronos.wfc.byteman.dao;
+package com.bytemanweb.dao;
 
 public class RulesDAO {
 

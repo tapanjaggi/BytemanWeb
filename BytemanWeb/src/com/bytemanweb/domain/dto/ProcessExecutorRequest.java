@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kronos.wfc.byteman.domain.dto;
+package com.bytemanweb.domain.dto;
 
 /**
  * @author Himanshu.Gaur
