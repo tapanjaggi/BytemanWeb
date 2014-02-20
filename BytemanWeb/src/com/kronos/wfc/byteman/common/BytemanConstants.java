@@ -1,4 +1,4 @@
-package com.kronos.wfc.byteman;
+package com.kronos.wfc.byteman.common;
 
 public interface BytemanConstants {
 	

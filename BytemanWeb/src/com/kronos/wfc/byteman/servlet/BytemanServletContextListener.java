@@ -1,4 +1,4 @@
-package com.kronos.wfc.byteman;
+package com.kronos.wfc.byteman.servlet;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
