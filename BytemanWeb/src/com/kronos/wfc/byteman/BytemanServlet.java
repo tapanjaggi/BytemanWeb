@@ -37,6 +37,7 @@ public class BytemanServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter(BytemanConstants.COMMAND);
+		
 		switch (command) {
 		case BytemanConstants.ATTACH_COMMAND: 
 			Runtime.getRuntime().exec("cmd /c C:\\Users\\tapan.jaggi\\Desktop\\byteman-download-2.1.2-bin\\byteman-download-2.1.2\\bin\\");
