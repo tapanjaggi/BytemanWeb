@@ -1,7 +1,14 @@
 package com.bytemanweb.servlet;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import com.bytemanweb.domain.ProcessExecutor;
 
 /**
  * Application Lifecycle Listener implementation class BytemanServletContextListener
@@ -19,14 +26,38 @@ public class BytemanServletContextListener implements ServletContextListener {
 	/**
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
-    public void contextInitialized(ServletContextEvent arg0) {
-        // TODO Auto-generated method stub
+    public void contextInitialized(ServletContextEvent ctxEvent) {
+    	ServletContext ctx = ctxEvent.getServletContext();
+        String bytemanHome = ctx.getRealPath("/utils");
+        System.setProperty("BYTEMAN_HOME", bytemanHome);
+        System.out.println("Byteman Home is " +System.getProperty("BYTEMAN_HOME"));
+        
+        String processId = getCurrentJavaProcessId();
+        
+        ProcessExecutor pe = new ProcessExecutor();
+        try {
+			pe.execute(bytemanHome+File.separator+"bin"+File.separator+"bminstall.bat "+ processId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
+
+	/**
+	 * @return
+	 */
+	private String getCurrentJavaProcessId() {
+		String name = ManagementFactory.getRuntimeMXBean().getName();
+        int index = name.indexOf("@");
+        String processId = name.substring(0,index);
+        System.out.println("Process ID : "+processId);
+		return processId;
+	}
 
 	/**
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
-    public void contextDestroyed(ServletContextEvent arg0) {
+    public void contextDestroyed(ServletContextEvent ctxEvent) {
         // TODO Auto-generated method stub
     }
 	
