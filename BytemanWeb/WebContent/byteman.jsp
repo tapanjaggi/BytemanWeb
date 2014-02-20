@@ -12,7 +12,7 @@
     <div id="column1">
     <h2>Your Current rules are: </h2>
     <form method="post" action="BytemanServlet">
-    <textarea id="textarea" rows="35"></textarea>
+    <textarea id="textarea" name="ruleDetails" rows="35"><%=request.getAttribute("currentRules") %></textarea>
     <button name="command" value="loadRules">
 Load Rules</button>
     <button name="submit" value="unload">

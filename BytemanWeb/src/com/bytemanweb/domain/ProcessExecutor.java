@@ -46,13 +46,13 @@ public class ProcessExecutor {
 		StringBuffer outputMessage = new StringBuffer();
 		String streamOutput = null;
 		while ((streamOutput = stdInput.readLine()) != null) {
-			outputMessage.append(streamOutput);
+			outputMessage.append(streamOutput).append(System.lineSeparator());
 		}
 
 		// read any errors from the attempted command
 		StringBuffer errorMessage = new StringBuffer();
 		while ((streamOutput = stdError.readLine()) != null) {
-			errorMessage.append(streamOutput);
+			errorMessage.append(streamOutput).append(System.lineSeparator());
 		}
 		
 		ProcessExecutorResponse executorResponse = new ProcessExecutorResponse();

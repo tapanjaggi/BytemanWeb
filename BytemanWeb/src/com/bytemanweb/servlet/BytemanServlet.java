@@ -1,5 +1,6 @@
 package com.bytemanweb.servlet;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bytemanweb.common.Byteman;
 import com.bytemanweb.common.BytemanConstants;
 import com.bytemanweb.domain.ProcessExecutor;
 import com.bytemanweb.domain.dto.ProcessExecutorRequest;
@@ -30,7 +32,11 @@ public class BytemanServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		ProcessExecutor processExecutor = new ProcessExecutor();
+		ProcessExecutorResponse executorResponse = processExecutor.execute("E:\\Byteman\\Download\\byteman-download-2.1.4.1-bin\\byteman-download-2.1.4.1\\bin\\bmsubmit.bat -l");
+		request.setAttribute("currentRules", executorResponse.getOutputMessage());
+		request.getRequestDispatcher("byteman.jsp").forward(request, response);
+		System.out.println(executorResponse.getOutputMessage());
 	}
 
 	/**
@@ -38,6 +44,8 @@ public class BytemanServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter(BytemanConstants.COMMAND);
+		String ruleDetails = request.getParameter("ruleDetails");
+		Byteman.writeToRulesFile(ruleDetails);
 		
 		switch (command) {
 		case BytemanConstants.ATTACH_COMMAND: 
@@ -45,7 +53,9 @@ public class BytemanServlet extends HttpServlet {
 			break;
 		case BytemanConstants.LOAD_RULES:
 			ProcessExecutorRequest executorRequest = new ProcessExecutorRequest();
-			executorRequest.setCommand("C:/Kronos/test.bat");
+	        String bytemanHome = request.getServletContext().getRealPath("/utils");
+			String submitCommand = bytemanHome+File.separator+BytemanConstants.RULE_SUBMIT_SCRIPT + " " + BytemanConstants.RULES_LOAD_TEMP_FILE;
+			executorRequest.setCommand(submitCommand);
 			ProcessExecutor processExecutor = new ProcessExecutor();
 			ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 			System.out.println(executorResponse.getOutputMessage());

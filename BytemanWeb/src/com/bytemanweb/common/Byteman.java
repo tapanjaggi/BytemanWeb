@@ -1,8 +1,27 @@
 package com.bytemanweb.common;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * Class for byteman utilities
+ * @author Himanshu.Gaur
+ *
+ */
 public class Byteman {
 	
-	public String bytemanHome;
-	public String listenerPort;
+	/**
+	 * Method to write byteman rules to the rules file
+	 * @param rules
+	 * @throws IOException
+	 */
+	public static void writeToRulesFile(String rules) throws IOException {
+		File newTextFile = new File(BytemanConstants.RULES_LOAD_TEMP_FILE);
+		newTextFile.createNewFile();
+		FileWriter fileWriter = new FileWriter(newTextFile);
+        fileWriter.write(rules);
+        fileWriter.close();
+	}
 
 }
