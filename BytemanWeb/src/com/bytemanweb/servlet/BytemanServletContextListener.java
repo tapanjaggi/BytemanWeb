@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.bytemanweb.common.BytemanConstants;
 import com.bytemanweb.domain.ProcessExecutor;
 
 /**
@@ -33,10 +34,9 @@ public class BytemanServletContextListener implements ServletContextListener {
         System.out.println("Byteman Home is " +System.getProperty("BYTEMAN_HOME"));
         
         String processId = getCurrentJavaProcessId();
-        
         ProcessExecutor pe = new ProcessExecutor();
         try {
-			pe.execute(bytemanHome+File.separator+"bin"+File.separator+"bminstall.bat "+ processId);
+			pe.execute(bytemanHome+File.separator+BytemanConstants.INSTALL_SCRIPT+" "+ processId);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
