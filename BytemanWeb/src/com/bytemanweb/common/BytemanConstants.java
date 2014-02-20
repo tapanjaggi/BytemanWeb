@@ -13,6 +13,7 @@ public interface BytemanConstants {
 	public static final String INSTALL_SCRIPT = "bin"+File.separator+"bminstall"+FILE_EXTENSION;
 	public static final String RULE_SUBMIT_SCRIPT = "bin"+File.separator+"bmsubmit"+FILE_EXTENSION;
 	public static final String RULE_UNLOAD_SCRIPT = RULE_SUBMIT_SCRIPT + " -u";
+	public static final String RULE_DISLAY_SCRIPT = RULE_SUBMIT_SCRIPT + " -l";
 	public static final String RULES_LOAD_TEMP_FILE = System.getProperty("java.io.tmpdir") + "loadRule.btm";
 
 }

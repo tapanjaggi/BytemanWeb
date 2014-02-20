@@ -33,7 +33,11 @@ public class BytemanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProcessExecutor processExecutor = new ProcessExecutor();
-		ProcessExecutorResponse executorResponse = processExecutor.execute("E:\\Byteman\\Download\\byteman-download-2.1.4.1-bin\\byteman-download-2.1.4.1\\bin\\bmsubmit.bat -l");
+		ProcessExecutorRequest executorRequest = new ProcessExecutorRequest();
+        String bytemanHome = request.getServletContext().getRealPath("/utils");
+		String submitCommand = bytemanHome+File.separator+BytemanConstants.RULE_DISLAY_SCRIPT;
+		executorRequest.setCommand(submitCommand);
+		ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 		request.setAttribute("currentRules", executorResponse.getOutputMessage());
 		request.getRequestDispatcher("byteman.jsp").forward(request, response);
 		System.out.println(executorResponse.getOutputMessage());
