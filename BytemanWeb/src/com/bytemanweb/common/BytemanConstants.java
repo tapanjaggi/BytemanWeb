@@ -14,6 +14,9 @@ public interface BytemanConstants {
 	public static final String RULE_SUBMIT_SCRIPT = "bin"+File.separator+"bmsubmit"+FILE_EXTENSION;
 	public static final String RULE_UNLOAD_SCRIPT = RULE_SUBMIT_SCRIPT + " -u";
 	public static final String RULE_DISLAY_SCRIPT = RULE_SUBMIT_SCRIPT + " -l";
-	public static final String RULES_LOAD_TEMP_FILE = System.getProperty("java.io.tmpdir") + "loadRule.btm";
+	public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
+	public static final String RULES_LOAD_TEMP_FILE =  TEMP_DIR+ File.separator+"loadRule.btm";
+	public static final String RULES_DIR = "rules";
+	public static final String OPEN_LOG_RULE_FILE = "openLogFileRule.btm";
 
 }
