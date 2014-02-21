@@ -23,5 +23,21 @@ public class Byteman {
         fileWriter.write(rules);
         fileWriter.close();
 	}
+	
+	/**
+	 * Method to re-format rules string to appropriate format.
+	 * @param rulesString
+	 * @return string in appropriate format
+	 */
+	public static String getRulesInDisplayFormat (String rulesString) {
+		StringBuffer displayString = new StringBuffer();
+		String[] rules = rulesString.split("ENDRULE");
+		for(String rule : rules) {
+			if(rule.indexOf("RULE") > -1) {
+				displayString.append(rule.substring(rule.indexOf("RULE")) + "ENDRULE" + System.lineSeparator() + System.lineSeparator());
+			}
+		}
+		return displayString.toString();
+	}
 
 }

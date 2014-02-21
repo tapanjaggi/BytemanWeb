@@ -38,7 +38,7 @@ public class BytemanServlet extends HttpServlet {
 		String submitCommand = bytemanHome+File.separator+BytemanConstants.RULE_DISLAY_SCRIPT;
 		executorRequest.setCommand(submitCommand);
 		ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
-		request.setAttribute("currentRules", executorResponse.getOutputMessage());
+		request.setAttribute("currentRules", Byteman.getRulesInDisplayFormat(executorResponse.getOutputMessage()));
 		request.getRequestDispatcher("byteman.jsp").forward(request, response);
 		System.out.println(executorResponse.getOutputMessage());
 	}
