@@ -1,23 +1,37 @@
 @CHARSET "ISO-8859-1";
-#column1-wrap{
-    float: left;
-    width: 100%;
+body, html {
+	height: 100%;
+	position: fixed;
+}
+#homePage {
+	height: 100%;
+	width: 100%;
+	position: fixed;
 }
 #column1{
     background-color: cyan;
     margin-right: 50%;
-    border: 1
+    margin-top: 1%;
+    height: 90%;
+    width: 50%;
+    border: 1;
+    position: fixed;
 }
 #column2{
     background-color: lime;
-    float: left;
     width: 50%;
-    margin-left: -50%;
-    border: 1
+    height: 90%;
+    margin-left: 50%;
+    margin-top: 1%;
+    border: 1;
+    position: fixed;
 }
-#textarea {    height: 100%;
+.bmTextArea {    
+	height: 100%;
     width: 100%;
-   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;   
+    resize:none; 
+    overflow: scroll;
+}
+.homePageForm {
+	height: 80%;
 }
