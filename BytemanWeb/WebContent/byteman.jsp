@@ -8,8 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="byteman.css">
-<link rel="stylesheet" href="css/mymodal.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
 <title>Byteman Home</title>
  <script type="text/javascript">
     
@@ -23,7 +21,7 @@
     }
     </script>
 </head>
-<body ng-app='ModalDemo'>
+<body>
 	<div id="homePage">
 			<div id="column1">
 				<h2>Your Current rules are:</h2>
@@ -54,11 +52,5 @@
 			</form>
 		</div>
 	</div>
-	<div ng-controller='MyCtrl'>
-    <button ng-click='toggleModal()'>Open Modal Dialog</button>
-    <modal-dialog show='modalShown' width='400px' height='60%'>
-      <p>Modal Content Goes here<p>
-    </modal-dialog>
-  </div>
 </body>
 </html>
