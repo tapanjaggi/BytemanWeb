@@ -14,5 +14,5 @@ METHOD doGet
 AT EXIT
 BIND path = System.getProperty("java.io.tmpdir")
 IF true
-DO traceln("logger", "Created bytman.log at "+path );
+DO traceln("logger", "bytman.log is created at "+path );
 ENDRULE
