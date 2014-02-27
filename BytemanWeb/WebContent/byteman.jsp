@@ -1,3 +1,6 @@
+<%@page import="java.io.FileReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,6 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="byteman.css">
+<link rel="stylesheet" href="css/mymodal.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
 <title>Byteman Home</title>
  <script type="text/javascript">
     
@@ -18,7 +23,7 @@
     }
     </script>
 </head>
-<body>
+<body ng-app='ModalDemo'>
 	<div id="homePage">
 			<div id="column1">
 				<h2>Your Current rules are:</h2>
@@ -31,9 +36,29 @@
 		<div id="column2">
 			<h2>Console output: </h2>
 			<form class="homePageForm" action="">
-			<div id="log" class="scrollablediv"></div>
+			<div id="log" class="scrollablediv">
+			<%
+			File logfile = (File) application.getAttribute("logfile");
+			StringBuffer sb = new StringBuffer();
+			if(logfile.exists()){
+				BufferedReader rdr = new BufferedReader(new FileReader(logfile));
+				String line;
+				while((line=rdr.readLine() )!= null){
+					sb.append(line).append(System.lineSeparator());
+				}	
+			}
+
+			%>
+			<pre><%=sb.toString() %></pre>
+			</div>
 			</form>
 		</div>
 	</div>
+	<div ng-controller='MyCtrl'>
+    <button ng-click='toggleModal()'>Open Modal Dialog</button>
+    <modal-dialog show='modalShown' width='400px' height='60%'>
+      <p>Modal Content Goes here<p>
+    </modal-dialog>
+  </div>
 </body>
 </html>
