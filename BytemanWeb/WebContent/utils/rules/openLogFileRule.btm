@@ -1,12 +1,18 @@
 RULE openLogFile
-
 CLASS com.bytemanweb.servlet.BytemanServlet
-
 METHOD init()
-
 AT EXIT
 BIND path = System.getProperty("java.io.tmpdir")
 IF true
 DO trace("Created bytman.log at "+path + ": " +traceOpen("logger" , path+"/byteman.log"));
+ENDRULE
 
+
+RULE openLogFile1
+CLASS com.bytemanweb.servlet.BytemanServlet
+METHOD doGet
+AT EXIT
+BIND path = System.getProperty("java.io.tmpdir")
+IF true
+DO traceln("logger", "Created bytman.log at "+path );
 ENDRULE

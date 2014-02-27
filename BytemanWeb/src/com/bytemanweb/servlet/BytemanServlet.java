@@ -45,7 +45,7 @@ public class BytemanServlet extends HttpServlet {
 		ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 		request.setAttribute("currentRules", Byteman.getRulesInDisplayFormat(executorResponse.getOutputMessage()));
 		request.getRequestDispatcher("byteman.jsp").forward(request, response);
-		System.out.println(executorResponse.getOutputMessage());
+		//System.out.println(executorResponse.getOutputMessage());
 	}
 
 	/**
@@ -55,9 +55,6 @@ public class BytemanServlet extends HttpServlet {
 		String command = request.getParameter(BytemanConstants.COMMAND);
 		
 		switch (command) {
-		case BytemanConstants.ATTACH_COMMAND: 
-			Runtime.getRuntime().exec("cmd /c C:\\Users\\tapan.jaggi\\Desktop\\byteman-download-2.1.2-bin\\byteman-download-2.1.2\\bin\\");
-			break;
 		case BytemanConstants.LOAD_RULES:
 			String ruleDetails = request.getParameter("ruleDetails");
 			Byteman.writeToRulesFile(ruleDetails);

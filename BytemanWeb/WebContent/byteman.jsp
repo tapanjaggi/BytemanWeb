@@ -6,6 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="byteman.css">
 <title>Byteman Home</title>
+ <script type="text/javascript">
+    
+        var eventSource = new EventSource("logtail");
+         
+        eventSource.onmessage = function(event) {
+         
+            document.getElementById('log').insertAdjacentHTML('beforeend', event.data);
+            document.getElementById('log').insertAdjacentHTML('beforeend', '</br>');
+         
+    }
+    </script>
 </head>
 <body>
 	<div id="homePage">
@@ -20,7 +31,7 @@
 		<div id="column2">
 			<h2>Console output: </h2>
 			<form class="homePageForm" action="">
-			<textarea class="bmTextArea"></textarea>
+			<div id="log" class="scrollablediv"></div>
 			</form>
 		</div>
 	</div>

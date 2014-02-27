@@ -35,3 +35,7 @@ body, html {
 .homePageForm {
 	height: 80%;
 }
+.scrollablediv{
+	height: 100%;
+	overflow: scroll;
+}

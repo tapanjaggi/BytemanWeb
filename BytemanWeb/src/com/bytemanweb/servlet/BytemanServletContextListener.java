@@ -10,6 +10,7 @@ import javax.servlet.ServletContextListener;
 
 import com.bytemanweb.common.BytemanConstants;
 import com.bytemanweb.domain.ProcessExecutor;
+import com.bytemanweb.domain.dto.LogTailerListener;
 import com.bytemanweb.domain.dto.ProcessExecutorResponse;
 
 /**
@@ -38,8 +39,18 @@ public class BytemanServletContextListener implements ServletContextListener {
         ProcessExecutor pe = new ProcessExecutor();
         try {
 			pe.execute(bytemanHome+File.separator+BytemanConstants.INSTALL_SCRIPT+" "+ processId);
+			File logFile = new File(BytemanConstants.TEMP_DIR+ File.separator+ BytemanConstants.LOG_FILE_NAME );
+			if(logFile.exists()){
+				logFile.delete();
+			}
+			logFile.createNewFile();
+			logFile.deleteOnExit();
+			
 			String ruleSubmit = bytemanHome+File.separator+BytemanConstants.RULE_SUBMIT_SCRIPT+" "+ bytemanHome +  File.separator+BytemanConstants.RULES_DIR+ File.separator+ BytemanConstants.OPEN_LOG_RULE_FILE;
 			ProcessExecutorResponse res = pe.execute(ruleSubmit);
+			
+			LogTailerListener.startLogTailer(logFile.getAbsolutePath());
+			
 			System.out.println("submitted rule " +res.getOutputMessage());
 		} catch (IOException e) { 
 			// TODO Auto-generated catch block
