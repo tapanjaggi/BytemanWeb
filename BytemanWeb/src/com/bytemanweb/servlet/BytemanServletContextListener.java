@@ -50,7 +50,7 @@ public class BytemanServletContextListener implements ServletContextListener {
 			ProcessExecutorResponse res = pe.execute(ruleSubmit);
 			
 			LogTailerListener.startLogTailer(logFile.getAbsolutePath());
-			
+			ctx.setAttribute("logfile", logFile);
 			System.out.println("submitted rule " +res.getOutputMessage());
 		} catch (IOException e) { 
 			// TODO Auto-generated catch block
