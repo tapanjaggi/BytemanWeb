@@ -24,7 +24,7 @@ body, html {
 }
 #column1{
     background-color: rgb(55,164,200);
-    margin-right: 50%;
+    margin-right: 49%;
     margin-top: 1%;
     height: 90%;
     width: 50%;
@@ -33,7 +33,7 @@ body, html {
 }
 #column2{
     background-color: rgb(200,115,75);
-    width: 50%;
+    width: 49%;
     height: 90%;
     margin-left: 50%;
     margin-top: 1%;
