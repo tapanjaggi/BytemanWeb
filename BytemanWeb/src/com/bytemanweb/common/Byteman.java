@@ -3,6 +3,10 @@ package com.bytemanweb.common;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bytemanweb.domain.dto.BTMRule;
 
 /**
  * Class for byteman utilities
@@ -38,6 +42,25 @@ public class Byteman {
 			}
 		}
 		return displayString.toString();
+	}
+
+	/**
+	 * Method to return list of BTM rules.
+	 * @param rulesString
+	 * @return string in appropriate format
+	 */
+	public static List<BTMRule> getBTMRules (String rulesString) {
+		List<BTMRule> rulesList = new ArrayList<BTMRule>();
+		String[] rules = rulesString.split("ENDRULE");
+		for(String rule : rules) {
+			if(rule.indexOf("RULE") > -1) {
+				BTMRule btmRule = new BTMRule();
+				btmRule.setRuleName(rule.substring(rule.indexOf("RULE") + 5, rule.indexOf(System.lineSeparator(), rule.indexOf("RULE"))));
+				btmRule.setRuleDefinition(rule.substring(rule.indexOf("RULE")) + "ENDRULE");
+				rulesList.add(btmRule);
+			}
+		}
+		return rulesList;
 	}
 
 }

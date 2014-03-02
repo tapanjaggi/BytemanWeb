@@ -3,13 +3,27 @@ body, html {
 	height: 100%;
 	position: fixed;
 }
+.homeLogo {
+	background-image: url('images/bytemanLogo.jpg');
+	background-size: 70px 30px;
+	background-repeat: no-repeat;
+	background-color: menu;
+	text-align: center;
+	font-size: x-large;
+	font-style: oblique;
+	font-family: cursive;
+	width: 100%;
+	position: fixed;
+	height: 5%;
+}
 #homePage {
-	height: 100%;
+	margin-top: 2%;
+	height: 90%;
 	width: 100%;
 	position: fixed;
 }
 #column1{
-    background-color: cyan;
+    background-color: rgb(55,164,200);
     margin-right: 50%;
     margin-top: 1%;
     height: 90%;
@@ -18,7 +32,7 @@ body, html {
     position: fixed;
 }
 #column2{
-    background-color: lime;
+    background-color: rgb(200,115,75);
     width: 50%;
     height: 90%;
     margin-left: 50%;
@@ -31,11 +45,29 @@ body, html {
     width: 100%;
     resize:none; 
     overflow: scroll;
+	background-color: windowframe;
+}
+.btmRules {
+	height: 100%;
+    width: 100%;
+    resize:none; 
+    overflow: scroll;
+}
+.btmRule {
+	margin-left: 5%;
+	position: relative;
+}
+.ruleCheckbox {
+	position: absolute;
 }
 .homePageForm {
 	height: 80%;
 }
-.scrollablediv{
+.homePageFormDiv {
 	height: 100%;
+}
+.scrollablediv{
+	height: 80%;
 	overflow: scroll;
+    background-color: white;
 }

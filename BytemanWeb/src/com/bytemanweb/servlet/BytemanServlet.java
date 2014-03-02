@@ -2,6 +2,7 @@ package com.bytemanweb.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bytemanweb.common.Byteman;
 import com.bytemanweb.common.BytemanConstants;
 import com.bytemanweb.domain.ProcessExecutor;
+import com.bytemanweb.domain.dto.BTMRule;
 import com.bytemanweb.domain.dto.ProcessExecutorRequest;
 import com.bytemanweb.domain.dto.ProcessExecutorResponse;
 
@@ -44,6 +46,10 @@ public class BytemanServlet extends HttpServlet {
 		executorRequest.setCommand(submitCommand);
 		ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 		request.setAttribute("currentRules", Byteman.getRulesInDisplayFormat(executorResponse.getOutputMessage()));
+		request.setAttribute("lineSeparator", System.lineSeparator());
+		List<BTMRule> btmRules = Byteman.getBTMRules(executorResponse.getOutputMessage());
+		System.out.println(btmRules);
+		request.setAttribute("btmRules", btmRules);
 		request.getRequestDispatcher("byteman.jsp").forward(request, response);
 		//System.out.println(executorResponse.getOutputMessage());
 	}
@@ -65,6 +71,7 @@ public class BytemanServlet extends HttpServlet {
 			ProcessExecutor processExecutor = new ProcessExecutor();
 			ProcessExecutorResponse executorResponse = processExecutor.execute(executorRequest);
 			System.out.println(executorResponse.getOutputMessage());
+			response.sendRedirect("BytemanServlet");
 			break;
 		case BytemanConstants.UNLOAD_RULES:
 			ruleDetails = request.getParameter("ruleDetails");
@@ -76,6 +83,7 @@ public class BytemanServlet extends HttpServlet {
 			processExecutor = new ProcessExecutor();
 			executorResponse = processExecutor.execute(executorRequest);
 			System.out.println(executorResponse.getOutputMessage());
+			response.sendRedirect("BytemanServlet");
 			break;
 		default:
 			break;
